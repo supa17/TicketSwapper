@@ -1,5 +1,5 @@
 {
-  "name": "TicketSwapper",
+  "name": "ticketswapper",
   "version": "1.0.0",
   "description": "A bot for https://ticketswap.nl/. It adds tickets for an event to the cart.",
   "main": "index.js",
