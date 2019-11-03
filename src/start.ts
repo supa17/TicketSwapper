@@ -7,12 +7,15 @@ export async function start(url: string, token: string) {
     async function loop() {
         const data = await Event.getData(eventId)
 
+        // TODO check how many tickets are currently in the cart
+
         const availableTickets = Ticket.getAvailableTickets(data);
         for (const ticket of availableTickets) {
             try {
+                // TODO improve the amount of tickets that should be bought
                 if (await Ticket.buyTicket(token, ticket)) {
 
-                    setTimeout(loop, 60000);
+                    setTimeout(loop, 5000);
                     return
                 }
             } catch (err) {
