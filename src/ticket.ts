@@ -14,7 +14,7 @@ function getAvailableTickets(eventData: EventData): { hash: string, url: string,
         _.get(eventData, '[0].data.node.types.edges.[0].node.availableListings.edges', []))
 
     return nodes.map(node => {
-        const path = _.get(node, 'node.uri.path', '')
+        const path = _.get(node, 'node.uri.url', '')
         const pathSplit = path.split("?")
         return {
             hash: getTicketHash(pathSplit[0]),

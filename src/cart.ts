@@ -28,7 +28,7 @@ async function addTicket(token: string, {listingId, hash}: CartAddTicket): Promi
                     "amountOfTickets": 1
                 }
             },
-            "query": "mutation addTicketsToCart($input: AddTicketsToCartInput!) {\n  addTicketsToCart(input: $input) {\n    cart {\n      id\n      __typename\n    }\n    errors {\n      code\n      message\n      __typename\n    }\n    __typename\n  }\n}\n"
+            "query": "mutation addTicketsToCart($input: AddTicketsToCartInput!) {  addTicketsToCart(input: $input) {    cart {      id      __typename    }    errors {      code      message      __typename    }    __typename  }}"
         }
     ];
 
