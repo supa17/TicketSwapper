@@ -2,6 +2,10 @@
 
 A bot for https://ticketswap.nl/. It adds tickets for an event to the cart.
 
+## DISCLAIMER
+
+Using the script might get you banned from Ticketswap (usage of a bot is against the terms and conditions). Please use it with your own risk.
+
 ## Install
 
 `npm install -g ticketswapper`
