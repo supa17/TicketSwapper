@@ -1,3 +1,5 @@
+![Node.js CI](https://github.com/Ecostack/TicketSwapper/workflows/Node.js%20CI/badge.svg?branch=master)
+
 # TicketSwapper
 
 A bot for https://ticketswap.nl/. It adds tickets for an event to the cart.
