@@ -4,7 +4,7 @@ const httpRequestManager = new HttpRequestManager({
 });
 
 const DEFAULT_HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36',
     'Accept': '*/*',
     'Accept-Language': 'nl',
     'Referer': 'https://www.ticketswap.nl/',

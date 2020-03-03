@@ -9,9 +9,10 @@ export type AvailableTicket = {
     listingId: string
 }
 
-function getAvailableTickets(eventData: EventData): { hash: string, url: string, listingId: string }[] {
-    const nodes = _.get(eventData, '[0].data.node.event.types.edges.[0].node.availableListings.edges',
-        _.get(eventData, '[0].data.node.types.edges.[0].node.availableListings.edges', []))
+function getAvailableTickets(eventData: EventData, ticketOption: number): { hash: string, url: string, listingId: string }[] {
+    const edge = ticketOption - 1;
+    const nodes = _.get(eventData, `[0].data.node.event.types.edges.[${edge}].node.availableListings.edges`,
+        _.get(eventData, `[0].data.node.types.edges.[${edge}].node.availableListings.edges`, []))
 
     return nodes.map(node => {
         const path = _.get(node, 'node.uri.url', '')
@@ -32,10 +33,10 @@ async function buyTicket(token: string, ticket: AvailableTicket): Promise<boolea
     });
 
     const cartId = _.get(result, '[0].data.addTicketsToCart.cart.id')
-    const errors = _.get(result, '[0].data.addTicketsToCart.errors')
+    const errors = _.get(result, '[0].errors',[]).concat(_.get(result, '[0].data.addTicketsToCart.errors',[]))
 
     if (errors && errors.length > 0) {
-        console.log(new Date(), 'Could not reservate ticket.', errors[0].code)
+        console.log(new Date(), 'Could not reservate ticket.', errors[0].code, errors[0].message)
     } else if (cartId) {
         const msg = `Reservated ticket ${ticket.listingId}`
         console.log(new Date(), msg)

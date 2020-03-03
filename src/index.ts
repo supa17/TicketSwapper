@@ -1,13 +1,39 @@
-import {Utils} from "./util";
 import {start} from "./start";
+
+import yargs from 'yargs';
 
 import cluster from 'cluster';
 
 const numCPUs = require('os').cpus().length;
 
-const {url, token, clusterMode} = Utils.getProgramArguments()
+const argv = yargs
+    .option('url', {
+        alias: 'u',
+        description: 'Event URL',
+        type: 'string',
+    })
+    .option('cluster', {
+        alias: 'c',
+        description: 'Cluster mode, starts multiple connections at once. Attention, might get you banned',
+        type: 'boolean',
+    })
+    .option('ticketoption', {
+        alias: 'o',
+        description: 'Event ticket option, starts at 1',
+        type: 'number',
 
-if (clusterMode && cluster.isMaster) {
+    })
+    .option('token', {
+        alias: 't',
+        description: 'Ticketswap token',
+        type: 'string',
+    })
+    .demandOption(['u','t'])
+    .help()
+    .alias('help', 'h')
+    .argv;
+
+if (argv.cluster && cluster.isMaster) {
     console.info(`Start in cluster mode, spawning ${numCPUs} processes.`)
     console.log(`Master ${process.pid} is running`);
 
@@ -20,5 +46,5 @@ if (clusterMode && cluster.isMaster) {
         console.log(`worker ${worker.process.pid} died`);
     });
 } else {
-    start(url, token)
+    start(argv.url, argv.token, argv.ticketoption)
 }
